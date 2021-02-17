@@ -1,11 +1,18 @@
 use std::env;
-use std::process::Command;
+use std::process;
+
+use rxssh::RxSshArgs;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    println!("{:?}", args);
 
-    let output = Command::new("ls").args(&["."]).status().expect("Unable to execute this process.");
+    let rx_ssh_args = RxSshArgs::new(&args).unwrap_or_else(|err| {
+        println!("Problem parsing arguments: {}", err);
+        process::exit(1);
+    });
 
-    println!("{}", output.to_string());
+    if let Err(e) = rxssh::run(rx_ssh_args) {
+        println!("Application error: {}", e);
+        process::exit(1);
+    }
 }
