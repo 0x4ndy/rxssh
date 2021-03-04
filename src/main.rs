@@ -1,5 +1,4 @@
 use std::process;
-
 use cmd::RxSshArgs;
 
 fn main() {

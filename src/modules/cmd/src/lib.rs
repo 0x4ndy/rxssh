@@ -1,8 +1,9 @@
 use clap::{App, Arg};
 
 pub struct RxSshArgs {
-    pub host: String,
     pub command: String,
+    pub username: String,
+    pub host: String,
 }
 
 impl RxSshArgs {
@@ -21,6 +22,14 @@ impl RxSshArgs {
                     .help("Command to be executed"),
             )
             .arg(
+                Arg::with_name("username")
+                    .required(true)
+                    .short("u")
+                    .long("username")
+                    .takes_value(true)
+                    .help("User to be executed on"),
+            )
+            .arg(
                 Arg::with_name("host")
                     .required(true)
                     .short("h")
@@ -30,10 +39,11 @@ impl RxSshArgs {
             )
             .get_matches();
 
-        let host = String::from(matches.value_of("host").unwrap());
         let command = String::from(matches.value_of("command").unwrap());
+        let username = String::from(matches.value_of("username").unwrap());
+        let host = String::from(matches.value_of("host").unwrap());
 
-        return Ok(RxSshArgs { host, command });
+        return Ok(RxSshArgs { command, username, host });
     }
 }
 
