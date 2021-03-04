@@ -1,12 +1,9 @@
-use std::env;
 use std::process;
 
-use rxssh::RxSshArgs;
+use cmd::RxSshArgs;
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    let rx_ssh_args = RxSshArgs::new(&args).unwrap_or_else(|err| {
+    let rx_ssh_args = RxSshArgs::new().unwrap_or_else(|err| {
         println!("Problem parsing arguments: {}", err);
         process::exit(1);
     });
