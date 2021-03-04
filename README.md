@@ -3,7 +3,7 @@ In simple terms, RxSSH can be used to execute commands on a remote host via SSH.
 
 # Future functionality
 * Start RxSSH as a daemon (either in client or server mode) and accept the commands via websocket
-* UI visualization of nodes in the network and a possibility to interact with them, remotely execute commands from the UI (using something like: (https://bubbleplait.com)).
+* UI visualization of nodes in the network and a possibility to interact with them, remotely execute commands from the UI (using something like: https://bubbleplait.com).
 
 # Code
 Check the code [here](https://github.com/aolchawa/rxssh)
