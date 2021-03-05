@@ -2,7 +2,7 @@
 In simple terms, RxSSH can be used to execute commands on a remote host via SSH. One advantage over the standard SSH client is that RxSSH let's you define a list of commands and hostnames, and then execute multiple commands on multiple hostnames. This comes in handy if, for instance, you are a system or network admin and have to execute multiple tasks (e.g. install software or change settings) on multiple nodes at the same time.
 
 # Overall Project Status
-RxSSH is currently only able to execute a single command on a single host (see [Example](#Example)).
+RxSSH is currently only able to execute a single command on a single host (see [Example Section](#Example)).
 
 Note: RxSSH is at a very early stage, therefore, expect not optimized or hardcoded elements in the code.
 
