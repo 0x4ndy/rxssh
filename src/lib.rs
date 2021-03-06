@@ -4,11 +4,15 @@ use cmd::RxSshArgs;
 
 pub fn run(rx_ssh_args: RxSshArgs) -> Result<(), Box<dyn Error>> {
     let results = ssh::execute_single(
-        &rx_ssh_args.hostname, 
-        &rx_ssh_args.username, 
-        &rx_ssh_args.command);
+        &rx_ssh_args.hostname,
+        &rx_ssh_args.username,
+        &rx_ssh_args.command,
+    );
 
-    println!("{}", results.unwrap().to_string());
+    match results {
+        Ok(content) => println!("{}", content),
+        Err(err) => return Err(err.into()),
+    };
 
     Ok(())
 }
