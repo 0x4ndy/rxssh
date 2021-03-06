@@ -27,5 +27,10 @@ It is recommended to and these two lines to .bashrc
 rxssh -c "ls -ltra" -u username -h example.com
 ```
 
+To see more options, type:
+```
+rxssh --help
+```
+
 # Code
 Check the code [here](https://github.com/aolchawa/rxssh)

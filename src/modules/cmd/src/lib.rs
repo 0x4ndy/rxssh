@@ -38,9 +38,21 @@ impl RxSshArgs {
             )
             .get_matches();
 
-        let command = String::from(matches.value_of("command").unwrap());
-        let username = String::from(matches.value_of("username").unwrap());
-        let hostname = String::from(matches.value_of("hostname").unwrap());
+        let command = String::from(
+            matches
+                .value_of("command")
+                .expect("Error while handling 'command' argument."),
+        );
+        let username = String::from(
+            matches
+                .value_of("username")
+                .expect("Error while handling 'username' argument."),
+        );
+        let hostname = String::from(
+            matches
+                .value_of("hostname")
+                .expect("Error while handling 'hostname' argument."),
+        );
 
         return Ok(RxSshArgs {
             hostname,
