@@ -8,10 +8,13 @@ pub struct RxSshArgs {
 
 impl RxSshArgs {
     pub fn new() -> Result<RxSshArgs, &'static str> {
+        let version = env!("CARGO_PKG_VERSION");
+        let authors = env!("CARGO_PKG_AUTHORS");
+
         let matches = App::new("RxSSH")
-            .version("")
-            .author("")
-            .about("")
+            .version(version)
+            .author(authors)
+            .about("https://rxssh.com")
             .arg(
                 Arg::with_name("command")
                     .required(true)
