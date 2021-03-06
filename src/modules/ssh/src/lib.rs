@@ -8,19 +8,19 @@ use std::{io::Read, net::TcpStream};
 use ssh2::Session;
 
 pub fn execute_single(
-    hostname: String,
-    username: String,
-    command: String,
+    hostname: &str,
+    username: &str,
+    command: &str,
 ) -> Result<String, Box<dyn Error>> {
-    let tcp = TcpStream::connect(format!("{}:22", &hostname)).unwrap();
+    let tcp = TcpStream::connect(format!("{}:22", hostname)).unwrap();
     let mut session = Session::new().unwrap();
 
     session.set_tcp_stream(tcp);
     session.handshake().unwrap();
-    session.userauth_agent(&username).unwrap();
+    session.userauth_agent(username).unwrap();
 
     let mut channel = session.channel_session().unwrap();
-    channel.exec(&command).unwrap();
+    channel.exec(command).unwrap();
     let mut output = String::new();
     channel.read_to_string(&mut output).unwrap();
 
