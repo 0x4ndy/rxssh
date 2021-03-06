@@ -1,5 +1,4 @@
-use std::error::Error;
-use std::{io::Read, net::TcpStream};
+use std::{error::Error, io::Read, net::TcpStream};
 
 use ssh2::Session;
 
