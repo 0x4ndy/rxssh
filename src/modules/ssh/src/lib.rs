@@ -44,15 +44,19 @@ pub fn execute_single(
         return Err(err.into());
     }
 
-    let code = match channel.exit_status() {
-        Ok(code) => code,
+    match channel.exit_status() {
+        Ok(code) => exit_code_to_string(code, &mut output),
         Err(err) => return Err(err.into()),
     };
 
+    Ok(output)
+}
+
+fn exit_code_to_string(code: i32, output: &mut String) {
     if code != 0 {
         output.clear();
+        // TODO: Handle this by a switch on different code
+        //       values and return a string interpretation
         output.push_str(&code.to_string());
     }
-
-    Ok(output)
 }
