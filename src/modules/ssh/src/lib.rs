@@ -1,5 +1,6 @@
 use std::{error::Error, io::Read, net::TcpStream};
 
+use anyhow::Result;
 use ssh2::Session;
 
 // Static values
@@ -10,39 +11,18 @@ pub fn execute_single(
     username: &str,
     command: &str,
 ) -> Result<String, Box<dyn Error>> {
-    let tcp = match TcpStream::connect(format!("{}:{}", hostname, SSH_PORT)) {
-        Ok(tcp) => tcp,
-        Err(err) => return Err(err.into()),
-    };
-
-    let mut session = match Session::new() {
-        Ok(session) => session,
-        Err(err) => return Err(err.into()),
-    };
+    let tcp = TcpStream::connect(format!("{}:{}", hostname, SSH_PORT))?;
+    let mut session = Session::new()?;
 
     session.set_tcp_stream(tcp);
+    session.handshake()?;
+    session.userauth_agent(username)?;
 
-    if let Err(err) = session.handshake() {
-        return Err(err.into());
-    }
-
-    if let Err(err) = session.userauth_agent(username) {
-        return Err(err.into());
-    }
-
-    let mut channel = match session.channel_session() {
-        Ok(channel) => channel,
-        Err(err) => return Err(err.into()),
-    };
-
-    if let Err(err) = channel.exec(command) {
-        return Err(err.into());
-    }
+    let mut channel = session.channel_session()?;
+    channel.exec(command)?;
 
     let mut output = String::new();
-    if let Err(err) = channel.read_to_string(&mut output) {
-        return Err(err.into());
-    }
+    channel.read_to_string(&mut output)?;
 
     match channel.exit_status() {
         Ok(code) => exit_code_to_string(code, &mut output),
