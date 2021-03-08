@@ -12,6 +12,11 @@ Note: RxSSH is at a very early stage, therefore, expect not optimized or hardcod
 * UI visualization of nodes in the network and a possibility to interact with them, remotely execute commands from the UI (e.g. using something like [BubblePlait](https://bubbleplait.com)).
 * Others (see [Issues](https://github.com/aolchawa/rxssh/projects/1) or [Projects](https://github.com/aolchawa/rxssh/projects/1) for details).
 
+# Build
+* Clone it from this repo
+* Execute `cargo build --release` 
+* Find generated binary under `<project>/release/rxssh`
+
 # Configuration
 RxSSH makes use of ssh-agent. In order for it to work properly and connect without passwords, make sure that your ssh-keys are set properly within the network as well as ssh agent is started. You can start the ssh-agent executing the following commands:
 ```
@@ -23,7 +28,7 @@ ssh-add ~/.ssh/<ssh-key> 2>/dev/null
 ```
 It is recommended to and these two lines to .bashrc
 
-# Example
+# Usage Examples
 ```
 rxssh -c "ls -ltra" -u username -h example.com
 ```
