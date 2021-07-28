@@ -10,7 +10,7 @@ Note: RxSSH is at a very early stage, therefore, expect not optimized or hardcod
 * Configuration of list of hosts and/or commands to be executed (e.g. in JSON format)
 * Start RxSSH as a daemon (either in client or server mode) and accept the commands via websocket
 * UI visualization of nodes in the network and a possibility to interact with them, remotely execute commands from the UI (e.g. using something like [BubblePlait](https://bubbleplait.com)).
-* Others (see [Issues](https://github.com/4ndyc0d3s/rxssh/projects/1) or [Projects](https://github.com/4ndyc0d3s/rxssh/projects/1) for details).
+* Others (see [Issues](https://github.com/andy-dot-codes/rxssh/projects/1) or [Projects](https://github.com/andy-dot-codes/rxssh/projects/1) for details).
 
 # Build
 * Clone it from this repo
@@ -39,4 +39,4 @@ rxssh --help
 ```
 
 # Code
-Check the code [here](https://github.com/4ndyc0d3s/rxssh)
+Check the code [here](https://github.com/andy-dot-codes/rxssh)
